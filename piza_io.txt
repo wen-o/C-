@@ -8,9 +8,13 @@ namespace ConsoleApplication4
 {
     class sub1
     {
-        public string str = "";
-        public int i = 0;
-        public void ipt(string str1)
+        
+        public static void puts(int i)
+        {
+            System.Console.WriteLine(i);
+        }
+
+        public void swt(int i)
         {
             switch (i)
             {
@@ -24,16 +28,18 @@ namespace ConsoleApplication4
         }
     }//Sub1終了
 
-    class Program
+class Program
     {
         static void Main(string[] args)
         {
             //宣言→
             string[] str_tmp;
-            int[,] ipt = new int[1000, 1000];
-            int[] cnt = new int[5];
-            int[] iptc = new int[5];
-            int answer = 0;
+            var ipt = new int[1000, 1000];
+            var cnt1 = 0;
+            var cnt2 = 0;
+            var cnt3 = 0;
+            var iptc = new int[5];
+            var answer = 0;
             //←宣言
 
             //入力回数決定→
@@ -43,35 +49,33 @@ namespace ConsoleApplication4
             //→入力回数決定
 
             //入力→
-            cnt[0] = 0;
-            while (cnt[0] < iptc[0])
+            cnt1 = 0;
+            while (cnt1 < iptc[0])
             {
                 str_tmp = System.Console.ReadLine().Trim().Split(' ');
-                for (cnt[1] = 0; cnt[1] < str_tmp.Length; cnt[1]++)
+                for (cnt2 = 0; cnt2 < str_tmp.Length; cnt2++)
                 {
-                    ipt[cnt[0], cnt[1]] = Convert.ToInt32(str_tmp[cnt[1]]);
+                    ipt[cnt1, cnt2] = Convert.ToInt32(str_tmp[cnt2]);
                 }
-                cnt[0]++;
-            }//←入力
+                cnt1++;
+            }
+            //←入力
 
             //出力テスト→
-            cnt[0] = 0;
-            while (cnt[0] < iptc[0])
+            cnt1 = 0;
+            while (cnt1 < iptc[0])
             {
-                for (cnt[1] = 0; cnt[1] < str_tmp.Length; cnt[1]++)
+                for (cnt2 = 0; cnt2 < str_tmp.Length; cnt2++)
                 {
-                    System.Console.Write("{0}", ipt[cnt[0], cnt[1]]);
-                    if (cnt[1] != str_tmp.Length)
-                    System.Console.Write(" ");
+                    System.Console.Write("{0}", ipt[cnt1, cnt2]);
+                    if (cnt2 != str_tmp.Length)
+                        System.Console.Write(" ");
                 }
                 System.Console.WriteLine("");
-                cnt[0]++;
-            }//←出力テスト
-
-            //答え→
-            System.Console.WriteLine("{0}", answer);
-            //←答え
-
-        }//← static void Main(string[] args)
-    }//←class Program
-}//←namespace ConsoleApplication4
+                cnt1++;
+            }
+            //←出力テスト
+            sub1.puts(answer);
+        }//←Main
+    }//←class
+}//←namespace
