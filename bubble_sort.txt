@@ -1,16 +1,78 @@
-            for (count[0] = 0; count[0] < input_count[0] - 1; count[0]++)
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace test
+{
+    class bubble
+    {
+        public static int[,] up(int[,] i_in)
+        {
+            var ans = i_in;
+            var i0 = 0;
+            var i1 = 0;
+            var i2 = 0;
+            var j0 = i_in.GetLength(0)-1;
+            var j1 = i_in.GetLength(1);
+            var f_tmp = new int[i_in.GetLength(1)];
+            
+            for (i0 = 0; i0 < j0; i0++)
             {
-                for (count[1] = input_count[0] - 1; count[1] > count[0]; count[1]--)
+                for (i1 = j0; i1 > i0; i1--)
                 {
                     // <で昇順1，2，3，4　>で降順4，3，2，1
-                    if (answer[count[1], 0] < answer[count[1] - 1,0])
+                    if (ans[i1, 0] < ans[i1 - 1, 0])
                     {
-                        f_tmp = answer[count[1], 0];
-                        f_tmp2 = answer[count[1], 1];
-                        answer[count[1],0] = answer[count[1]-1, 0];
-                        answer[count[1],1] = answer[count[1]-1, 1];
-                        answer[count[1] - 1,0] = f_tmp;
-                        answer[count[1] - 1,1] = f_tmp2;
+                        for (i2 = 0; i2 < i_in.GetLength(1); i2++)
+                        {
+                            f_tmp[i2] = ans[i1, i2];
+                            ans[i1, i2] = ans[i1 - 1, i2];
+                            ans[i1 - 1, i2] = f_tmp[i2];
+                        }
                     }
                 }
             }
+            return ans;
+        }
+
+    }//Sub1終了
+
+    class Program
+    {
+
+
+        static void Main(string[] args)
+        {
+            int[,] ans;
+            var rnd = new System.Random(1000);
+            var inp = new int[100, 3];
+            var i = 0;
+            var i2 = 0;
+            while (i < 100)
+            {
+                for (i2 = 0; i2 < 3; i2++)
+                {
+                    inp[i, i2] = rnd.Next(100);
+                }
+                i++;
+            }
+
+            ans = bubble.up(inp);
+            i = 0;
+            while (i < 100)
+            {
+                for (i2 = 0; i2 < 3; i2++)
+                {
+                    System.Console.Write("{0}", ans[i, i2]);
+                    if (i2 != 3)
+                        System.Console.Write(" ");
+                }
+                System.Console.WriteLine("");
+                i++;
+            }
+            //←出力テスト
+        }//←Main
+    }//←class
+}//←namespace
