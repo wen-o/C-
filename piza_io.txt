@@ -6,38 +6,77 @@ using System.Threading.Tasks;
 
 namespace test
 {
-    class sub1
+    class debug
     {
-        
-        public static void puts(int i)
+
+        public static void i1 (int[] i_in,int ie)
         {
-            System.Console.WriteLine(i);
+            var i = 0;
+            for (i = 0; i < ie; i++)
+                {
+                  System.Console.Write("{0}", i_in[i]);
+                  if (i != ie)
+                  {
+                    System.Console.Write(" ");
+                  }
+                }
+        }
+
+        public static void i2(int[,] i_in ,int ie1,int ie2)
+        {
+            var i1 = 0;
+            var i2 = 0;
+
+            for (i1 = 0; i1 < ie1; i1++)
+            {
+                for (i2 = 0; i2 < ie2; i2++)
+                {
+                    System.Console.Write("{0}", i_in[i1, i2]);
+                    if (i2 != ie2)
+                    {
+                        System.Console.Write(" ");
+                    }
+
+                }
+                System.Console.WriteLine("");
+            }
         }
 
         public void swt(int i)
         {
-            switch (i)
+            var num = 0;
+            if (i > 0)
+                num = 1;
+            if (i < 0)
+                num = 2;
+            if (i == 0)
+                num = 3;
+            
+            switch (num)
             {
-                case 3:
+                case 1:
+                    System.Console.WriteLine("minus");
                     break;
-                case 5:
+                case 2:
+                    System.Console.WriteLine("plus");
                     break;
                 default:
+                    System.Console.WriteLine("zero");
                     break;
             }
         }
     }//Sub1終了
 
-class Program
+    class Program
     {
         static void Main(string[] args)
         {
             //宣言→
             string[] str_tmp;
-            var ipt = new int[1000, 1000];
+            var inp = new int[1000, 1000];
             var cnt1 = 0;
             var cnt2 = 0;
-            var cnt3 = 0;
+            // var cnt3 = 0;
             var iptc = new int[5];
             var answer = 0;
             //←宣言
@@ -55,27 +94,15 @@ class Program
                 str_tmp = System.Console.ReadLine().Trim().Split(' ');
                 for (cnt2 = 0; cnt2 < str_tmp.Length; cnt2++)
                 {
-                    ipt[cnt1, cnt2] = Convert.ToInt32(str_tmp[cnt2]);
+                    inp[cnt1, cnt2] = Convert.ToInt32(str_tmp[cnt2]);
                 }
                 cnt1++;
             }
             //←入力
-
+            debug.i2(inp,iptc[0], str_tmp.Length);
             //出力テスト→
-            cnt1 = 0;
-            while (cnt1 < iptc[0])
-            {
-                for (cnt2 = 0; cnt2 < str_tmp.Length; cnt2++)
-                {
-                    System.Console.Write("{0}", ipt[cnt1, cnt2]);
-                    if (cnt2 != str_tmp.Length)
-                        System.Console.Write(" ");
-                }
-                System.Console.WriteLine("");
-                cnt1++;
-            }
-            //←出力テスト
-            sub1.puts(answer);
-        }//←Main
-    }//←class
+            System.Console.WriteLine("{0}", answer);
+
+    }//←Main
+}//←class
 }//←namespace

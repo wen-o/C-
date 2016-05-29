@@ -8,7 +8,7 @@ namespace test
 {
     class bubble
     {
-        public static int[,] up(int[,] i_in)
+        public static int[,] up(int[,] i_in,int i_num =0)
         {
             var ans = i_in;
             var i0 = 0;
@@ -23,7 +23,7 @@ namespace test
                 for (i1 = j0; i1 > i0; i1--)
                 {
                     // <で昇順1，2，3，4　>で降順4，3，2，1
-                    if (ans[i1, 0] < ans[i1 - 1, 0])
+                    if (ans[i1, i_num] < ans[i1 - 1, i_num])
                     {
                         for (i2 = 0; i2 < i_in.GetLength(1); i2++)
                         {
@@ -37,7 +37,36 @@ namespace test
             return ans;
         }
 
-    }//Sub1終了
+        public static int[,] down(int[,] i_in, int i_num = 0)
+        {
+            var ans = i_in;
+            var i0 = 0;
+            var i1 = 0;
+            var i2 = 0;
+            var j0 = i_in.GetLength(0) - 1;
+            var j1 = i_in.GetLength(1);
+            var f_tmp = new int[i_in.GetLength(1)];
+
+            for (i0 = 0; i0 < j0; i0++)
+            {
+                for (i1 = j0; i1 > i0; i1--)
+                {
+                    // <で昇順1，2，3，4　>で降順4，3，2，1
+                    if (ans[i1, i_num] > ans[i1 - 1, i_num])
+                    {
+                        for (i2 = 0; i2 < i_in.GetLength(1); i2++)
+                        {
+                            f_tmp[i2] = ans[i1, i2];
+                            ans[i1, i2] = ans[i1 - 1, i2];
+                            ans[i1 - 1, i2] = f_tmp[i2];
+                        }
+                    }
+                }
+            }
+            return ans;
+        }
+
+    }//bubble終了
 
     class Program
     {
@@ -49,6 +78,7 @@ namespace test
             var rnd = new System.Random(1000);
             var inp = new int[100, 3];
             var i = 0;
+
             var i2 = 0;
             while (i < 100)
             {
@@ -59,7 +89,7 @@ namespace test
                 i++;
             }
 
-            ans = bubble.up(inp);
+            ans = bubble.down(inp);
             i = 0;
             while (i < 100)
             {
