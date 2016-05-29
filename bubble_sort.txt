@@ -1,0 +1,16 @@
+            for (count[0] = 0; count[0] < input_count[0] - 1; count[0]++)
+            {
+                for (count[1] = input_count[0] - 1; count[1] > count[0]; count[1]--)
+                {
+                    // <で昇順1，2，3，4　>で降順4，3，2，1
+                    if (answer[count[1], 0] < answer[count[1] - 1,0])
+                    {
+                        f_tmp = answer[count[1], 0];
+                        f_tmp2 = answer[count[1], 1];
+                        answer[count[1],0] = answer[count[1]-1, 0];
+                        answer[count[1],1] = answer[count[1]-1, 1];
+                        answer[count[1] - 1,0] = f_tmp;
+                        answer[count[1] - 1,1] = f_tmp2;
+                    }
+                }
+            }
