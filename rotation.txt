@@ -1,0 +1,17 @@
+     static int[,] rotation(int[,] i_in) {
+            // 引数の2次元配列 g を時計回りに回転させたものを返す
+            int i_x = i_in.GetLength(0);
+            int i_y = i_in.GetLength(1);
+
+            int[,] i_out = new int[i_y, i_x];
+            for (int i1 = 0; i1 < i_y; i1++)
+            {
+                for (int i2 = 0; i2 < i_x; i2++)
+                {
+                 i_out[i1,i2] = i_in[i_x - i2- 1,i1 ];
+                    System.Console.Write("{0}", i_in[i_x - i2 - 1, i1]);
+                }
+                System.Console.WriteLine("");
+            }
+            return i_out;
+        }

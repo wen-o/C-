@@ -1,0 +1,77 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication4
+{
+    class sub1
+    {
+        public string str = "";
+        public int i = 0;
+        public void ipt(string str1)
+        {
+            switch (i)
+            {
+                case 3:
+                    break;
+                case 5:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }//Sub1終了
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //宣言→
+            string[] str_tmp;
+            int[,] ipt = new int[1000, 1000];
+            int[] cnt = new int[5];
+            int[] iptc = new int[5];
+            int answer = 0;
+            //←宣言
+
+            //入力回数決定→
+            str_tmp = System.Console.ReadLine().Trim().Split(' ');
+            iptc[0] = Convert.ToInt32(str_tmp[0]);
+            iptc[1] = Convert.ToInt32(str_tmp[1]);
+            //→入力回数決定
+
+            //入力→
+            cnt[0] = 0;
+            while (cnt[0] < iptc[0])
+            {
+                str_tmp = System.Console.ReadLine().Trim().Split(' ');
+                for (cnt[1] = 0; cnt[1] < str_tmp.Length; cnt[1]++)
+                {
+                    ipt[cnt[0], cnt[1]] = Convert.ToInt32(str_tmp[cnt[1]]);
+                }
+                cnt[0]++;
+            }//←入力
+
+            //出力テスト→
+            cnt[0] = 0;
+            while (cnt[0] < iptc[0])
+            {
+                for (cnt[1] = 0; cnt[1] < str_tmp.Length; cnt[1]++)
+                {
+                    System.Console.Write("{0}", ipt[cnt[0], cnt[1]]);
+                    if (cnt[1] != str_tmp.Length)
+                    System.Console.Write(" ");
+                }
+                System.Console.WriteLine("");
+                cnt[0]++;
+            }//←出力テスト
+
+            //答え→
+            System.Console.WriteLine("{0}", answer);
+            //←答え
+
+        }//← static void Main(string[] args)
+    }//←class Program
+}//←namespace ConsoleApplication4
