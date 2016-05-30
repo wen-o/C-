@@ -95,29 +95,29 @@ namespace test
         {
             //宣言→
             string[] str_tmp;
-            var inp = new int[1000, 1000];
-            var cnt1 = 0;
-            var cnt2 = 0;
-            var iptc = new int[5];
+            var input = new int[1000, 1000];
+            var i1 = 0;
+            var i2 = 0;
+            var cnt = new int[5];
             var answer = 0;
             //←宣言
             //入力回数決定→
             str_tmp = System.Console.ReadLine().Trim().Split(' ');
-            iptc[0] = Convert.ToInt32(str_tmp[0]);
-            iptc[1] = Convert.ToInt32(str_tmp[1]);
+            cnt[0] = Convert.ToInt32(str_tmp[0]);
+            cnt[1] = Convert.ToInt32(str_tmp[1]);
             //→入力回数決定
 
             //入力→
-            for (cnt1 = 0; cnt1 < iptc[0]; cnt1++)
+            for (i1 = 0; i1 < cnt[0]; i1++)
             {
                 str_tmp = System.Console.ReadLine().Trim().Split(' ');
-                for (cnt2 = 0; cnt2 < str_tmp.Length; cnt2++)
+                for (i2 = 0; i2 < str_tmp.Length; i2++)
                 {
-                    inp[cnt1, cnt2] = Convert.ToInt32(str_tmp[cnt2]);
-                }//cnt2
-            }//cnt1
+                    input[i1, i2] = Convert.ToInt32(str_tmp[i2]);
+                }//i2
+            }//i1
             //←入力
-            debug.i2(inp, iptc[0], str_tmp.Length);
+            debug.i2(input, cnt[0], str_tmp.Length);
             //出力テスト→
             System.Console.WriteLine("{0}", answer);
 
